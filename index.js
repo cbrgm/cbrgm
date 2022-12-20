@@ -18,10 +18,8 @@ function generateProgressBar() {
 }
 
 const readme = `\
-### Moin! 👋
-
 <p align="center">
-⏳Year Progress (${(progressOfThisYear * 100).toFixed(2)} %) <br>
+⏳Year ${thisYear} Progress (${(progressOfThisYear * 100).toFixed(2)} %) <br>
 ${generateProgressBar()} <br>
 <sub>⏰ Updated: ${new Date().toUTCString()}</sub>
 </p>
