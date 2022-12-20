@@ -19,9 +19,9 @@ function generateProgressBar() {
 
 const readme = `\
 <p align="center">
-⏳Year ${thisYear} Progress (${(progressOfThisYear * 100).toFixed(2)} %) <br>
+⏳Year Progress (${(progressOfThisYear * 100).toFixed(2)} %) <br>
 ${generateProgressBar()} <br>
-<sub>⏰ Updated: ${new Date().toUTCString()}</sub>
+<sub>Updated: ${new Date().toUTCString()}</sub>
 </p>
 `
 
