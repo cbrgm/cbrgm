@@ -84,5 +84,8 @@
     ],
     "labels": [
         "renovate"
+    ],
+   "ignoreDeps": [
+        "github.com/prometheus/prometheus"
     ]
 }
