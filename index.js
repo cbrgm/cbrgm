@@ -19,7 +19,7 @@ function generateProgressBar() {
 
 const readme = `\
 <p align="center">
-⏳Year Progress (${(progressOfThisYear * 100).toFixed(2)} %) <img src="https://file5s.ratemyserver.net/mobs/1062.gif"><br>
+⏳Year Progress (${(progressOfThisYear * 100).toFixed(2)} %)<br>
 ${generateProgressBar()} <br>
 <sub>Updated: ${new Date().toUTCString()}</sub>
 </p>
