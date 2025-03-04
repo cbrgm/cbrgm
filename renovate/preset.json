@@ -72,6 +72,10 @@
             "automerge": true
         },
         {
+            "matchDatasources": ["golang-version"],
+            "rangeStrategy": "replace"
+        },
+        {
             "description": "Build tool version upgrades",
             "groupName": "build tools",
             "matchManagers": [
