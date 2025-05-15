@@ -8,7 +8,8 @@
     "config:base",
     ":rebaseStalePrs",
     ":semanticCommits",
-    ":semanticCommitType(deps)"
+    ":semanticCommitType(deps)",
+    "helpers:pinGitHubActionDigests"
   ],
   "dockerfile": {
     "pinDigests": false
@@ -91,6 +92,13 @@
         "golang-version"
       ],
       "rangeStrategy": "replace"
+    },
+    {
+      "extends": [
+        "helpers:pinGitHubActionDigests"
+      ],
+      "extractVersion": "^(?<version>v?\\d+\\.\\d+\\.\\d+)$",
+      "versioning": "regex:^v?(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
     },
     {
       "description": "Build tool version upgrades",
