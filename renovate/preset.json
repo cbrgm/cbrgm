@@ -1,95 +1,112 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "dependencyDashboard": false,
-    "description": [
-        "Preset used in all of my personal projects"
-    ],
-    "extends": [
-        "config:base",
-        ":semanticCommits",
-        ":semanticCommitType(deps)"
-    ],
-    "dockerfile": {
-        "pinDigests": false
-    },
-    "gomod": {
-        "postUpdateOptions": [
-            "gomodUpdateImportPaths",
-            "gomodTidy"
-        ]
-    },
-    "packageRules": [
-        {
-            "description": "Semantic commits for major updates",
-            "groupName": "major versions",
-            "matchUpdateTypes": [
-                "major"
-            ],
-            "semanticCommitType": "major",
-            "semanticCommitScope": "deps",
-            "automerge": true
-        },
-        {
-            "description": "Semantic commits for minor updates",
-            "groupName": "minor versions",
-            "matchUpdateTypes": [
-                "minor"
-            ],
-            "semanticCommitType": "minor",
-            "semanticCommitScope": "deps",
-            "automerge": true
-        },
-        {
-            "description": "Semantic commits for patch updates",
-            "groupName": "patch versions",
-            "matchUpdateTypes": [
-                "patch"
-            ],
-            "semanticCommitType": "patch",
-            "semanticCommitScope": "deps",
-            "automerge": true
-        },
-        {
-            "description": "Automerge docker updates",
-            "groupName": "docker digests",
-            "matchDatasources": [
-                "docker"
-            ],
-            "semanticCommitType": "chore",
-            "semanticCommitScope": "deps",
-            "pinDigests": false,
-            "automerge": true
-        },
-        {
-            "description": "Automerge untagged go libs",
-            "groupName": "untagged libraries",
-            "matchPackageNames": [
-                "golang.org/x/crypto",
-                "golang.org/x/net"
-            ],
-            "semanticCommitType": "deps",
-            "semanticCommitScope": "patch",
-            "automerge": true
-        },
-        {
-            "matchDatasources": ["golang-version"],
-            "rangeStrategy": "replace"
-        },
-        {
-            "description": "Build tool version upgrades",
-            "groupName": "build tools",
-            "matchManagers": [
-                "github-actions"
-            ],
-            "semanticCommitType": "ci",
-            "semanticCommitScope": "tools",
-            "automerge": true
-        }
-    ],
-    "labels": [
-        "renovate"
-    ],
-   "ignoreDeps": [
-        "github.com/prometheus/prometheus"
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": false,
+  "description": [
+    "Preset used in all of my personal projects"
+  ],
+  "extends": [
+    "config:base",
+    ":rebaseStalePrs",
+    ":semanticCommits",
+    ":semanticCommitType(deps)"
+  ],
+  "dockerfile": {
+    "pinDigests": false
+  },
+  "gomod": {
+    "postUpdateOptions": [
+      "gomodUpdateImportPaths",
+      "gomodTidy"
     ]
+  },
+  "customManagers": [
+    {
+      "description": "Update Golang in .go-version file",
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)\\.go-version$"
+      ],
+      "matchStrings": [
+        "^\\s*(?<currentValue>.+?)\\s*$"
+      ],
+      "depNameTemplate": "golang",
+      "datasourceTemplate": "golang-version"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Semantic commits for major updates",
+      "groupName": "major versions",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "semanticCommitType": "major",
+      "semanticCommitScope": "deps",
+      "automerge": true
+    },
+    {
+      "description": "Semantic commits for minor updates",
+      "groupName": "minor versions",
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "semanticCommitType": "minor",
+      "semanticCommitScope": "deps",
+      "automerge": true
+    },
+    {
+      "description": "Semantic commits for patch updates",
+      "groupName": "patch versions",
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "semanticCommitType": "patch",
+      "semanticCommitScope": "deps",
+      "automerge": true
+    },
+    {
+      "description": "Automerge docker updates",
+      "groupName": "docker digests",
+      "matchDatasources": [
+        "docker"
+      ],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps",
+      "pinDigests": false,
+      "automerge": true
+    },
+    {
+      "description": "Automerge untagged go libs",
+      "groupName": "untagged libraries",
+      "matchPackageNames": [
+        "golang.org/x/crypto",
+        "golang.org/x/net"
+      ],
+      "semanticCommitType": "deps",
+      "semanticCommitScope": "patch",
+      "automerge": true
+    },
+    {
+      "matchDatasources": [
+        "golang-version"
+      ],
+      "rangeStrategy": "replace"
+    },
+    {
+      "description": "Build tool version upgrades",
+      "groupName": "build tools",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "semanticCommitType": "ci",
+      "semanticCommitScope": "tools",
+      "automerge": true
+    }
+  ],
+  "labels": [
+    "renovate"
+  ],
+  "ignoreDeps": [
+    "github.com/prometheus/prometheus"
+  ]
 }
