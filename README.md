@@ -1,6 +1,6 @@
 <p align="center">
-⏳Year Progress (99.93 %)<br>
-█████████████████████████████▁ <br>
-<sub>Updated: Wed, 31 Dec 2025 18:04:38 GMT</sub>
+⏳Year Progress (0.00 %)<br>
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ <br>
+<sub>Updated: Thu, 01 Jan 2026 00:16:14 GMT</sub>
 </p>
 
