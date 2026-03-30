@@ -101,6 +101,17 @@
       "versioning": "regex:^v?(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
     },
     {
+      "description": "Only update GitHub Actions on minor/major version changes",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "digest",
+        "patch"
+      ],
+      "enabled": false
+    },
+    {
       "description": "Build tool version upgrades",
       "groupName": "build tools",
       "matchManagers": [
