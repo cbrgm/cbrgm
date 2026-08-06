@@ -1,16 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "dependencyDashboard": false,
+  "dependencyDashboard": true,
   "description": [
     "Preset used in all of my personal projects"
   ],
   "extends": [
-    "config:base",
+    "config:recommended",
     ":rebaseStalePrs",
     ":semanticCommits",
-    ":semanticCommitType(deps)",
     "helpers:pinGitHubActionDigests"
   ],
+  "minimumReleaseAge": "3 days",
   "dockerfile": {
     "pinDigests": false
   },
@@ -36,32 +36,31 @@
   ],
   "packageRules": [
     {
-      "description": "Semantic commits for major updates",
-      "groupName": "major versions",
+      "description": "Major updates: individual PRs, reviewed manually",
       "matchUpdateTypes": [
         "major"
       ],
-      "semanticCommitType": "major",
+      "semanticCommitType": "chore",
       "semanticCommitScope": "deps",
-      "automerge": true
+      "automerge": false
     },
     {
-      "description": "Semantic commits for minor updates",
+      "description": "Minor updates: grouped and automerged",
       "groupName": "minor versions",
       "matchUpdateTypes": [
         "minor"
       ],
-      "semanticCommitType": "minor",
+      "semanticCommitType": "chore",
       "semanticCommitScope": "deps",
       "automerge": true
     },
     {
-      "description": "Semantic commits for patch updates",
+      "description": "Patch updates: grouped and automerged",
       "groupName": "patch versions",
       "matchUpdateTypes": [
         "patch"
       ],
-      "semanticCommitType": "patch",
+      "semanticCommitType": "chore",
       "semanticCommitScope": "deps",
       "automerge": true
     },
@@ -83,8 +82,8 @@
         "golang.org/x/crypto",
         "golang.org/x/net"
       ],
-      "semanticCommitType": "deps",
-      "semanticCommitScope": "patch",
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps",
       "automerge": true
     },
     {
@@ -94,9 +93,6 @@
       "rangeStrategy": "replace"
     },
     {
-      "extends": [
-        "helpers:pinGitHubActionDigests"
-      ],
       "extractVersion": "^(?<version>v?\\d+\\.\\d+\\.\\d+)$",
       "versioning": "regex:^v?(?<major>\\d+)(\\.(?<minor>\\d+)\\.(?<patch>\\d+))?$"
     },
